@@ -1,0 +1,34 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+void *append(int* arr, size_t *arrLen,size_t *capacity,int value){
+    if (arrLen>=capacity){
+        (*capacity) *=2;
+        int* newArr= malloc(sizeof(int) * (*capacity));
+        
+        for (int i=0;i<*arrLen;++i){
+            newArr[i]=arr[i];
+        }
+        free(arr);
+        arr=newArr;
+    }
+    arr[*arrLen]=value;
+    *arrLen++;
+    
+    return arr;
+}
+int main() {
+    int length=0;
+    int capacity=10;
+	int *a =malloc(sizeof(int)*capacity);
+	for (int i=0;i<10;i++){
+	    a=append(a,&length,&capacity,12);
+	}
+	printf("%i %i",length,capacity);
+	for (int i=0;i<10;i++){
+	    printf("%i",a[i]);
+	}
+	free(*a);
+
+}
+
