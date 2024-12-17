@@ -1,8 +1,12 @@
-#include <iostream>
+#include <stdio.h>
+#include <stdlib.h>
+
 void First() { // самое длинное слово
 	int max = 0;
 	int bigWordStart = 0;
-	char str[100] = " worldddd woord lol h";
+	char str[100] = "worldddd woord lol h";
+	puts(str);
+
 	for (int i = 0, j = 0; str[i] != '\0'; i++, j++) {
 		if ((str[i] == ' ') || (str[i + 1] == '\0')) {
 			if (str[i + 1] == '\0') {
@@ -23,9 +27,9 @@ void First() { // самое длинное слово
 	}
 }
 
-
-void Second() { //  удалить двойные цифры
+void Second() { //  удалить двузначные числа
 	char str[100] = "22 1154 22 123 22 2 13 1";
+	puts(str);
 
 	for (int i = 0, j = 0; str[i] != '\0'; i++, j++) {
 		if ((str[i] == ' ') || (str[i + 1] == '\0')) {
@@ -34,8 +38,6 @@ void Second() { //  удалить двойные цифры
 				i++;
 			}
 			if (j == 2) {
-				/*str[i - 1] = ' ';
-				str[i - 2] = ' ';*/
 				for (int k = i-2; str[k]!='\0'; k++)
 				{
 					str[k] = str[k+3];
@@ -48,9 +50,7 @@ void Second() { //  удалить двойные цифры
 			{
 				j = -1;
 			}
-
 		}
-
 	}
 	puts(str);
 }
@@ -61,11 +61,10 @@ int StrLen(char* str) { //длинна строки
 	return len;
 }
 
-void Third() {
+void Third() { // добавить символ | слева и справа от слов палиндромов
 	int isPal = 0;
-	char str[100] = "aaa DSW adda WSAD a"; // добавить |
-	//printf("%i", len);
-
+	char str[100] = "aaa dsw adda wsad a"; 
+	puts(str);
 	for (int i = 0, j = 0; str[i] != '\0'; i++, j++)
 	{
 		if (((str[i] == ' ')) || (str[i + 1] == '\0'))
@@ -91,7 +90,6 @@ void Third() {
 				}
 			}
 			if (isPal == 1) {
-				//printf("%i", StrLen(str));
 				for (int k = StrLen(str)+2; k!=-1; k--)
 				{
 					
@@ -109,17 +107,15 @@ void Third() {
 						str[k] = '|';
 					}
 				}
-				/*puts(str);*/
 				i += 2;
 			}
 			j = -1;
-			//printf("isPal = %i ", isPal);
 		}
 	}
 	puts(str);
 }
 
-void Four() {// наибольшая сумма эл матриц 
+void Four() {// найти квадратную подматрицу с максимальной суммой элементов
 	int indexi = 0;
 	int indexj = 0;
 	int podmatrizaSize;
@@ -129,9 +125,20 @@ void Four() {// наибольшая сумма эл матриц
 					{5,5,3,4,5},
 					{5,5,3,4,5},
 					{1,2,3,4,5}, };
-	printf("Enter the size of the submatrix: ");
+
+	printf("your matrix:\n");
+	for (int i = 0; i < 4; i++) { //вывод данной матрицы
+		for (int j = 0; j <5; j++)
+		{
+			printf("%i ", matr[i][j]);
+		}
+		printf("\n");
+	}
+
+	printf("Enter the size of the submatrix: "); 
 	scanf_s("%i", &podmatrizaSize);
-	for (int i = 0; i < 4 - podmatrizaSize + 1; i++)
+
+	for (int i = 0; i < 4 - podmatrizaSize + 1; i++) // нахождение подматрицы
 	{
 		for (int j = 0; j < 5 - podmatrizaSize + 1; j++)
 		{
@@ -141,20 +148,20 @@ void Four() {// наибольшая сумма эл матриц
 				for (int j1 = j; j1 < podmatrizaSize + j; j1++)
 				{
 					sumMatr += matr[i1][j1];
-					printf("%i ", matr[i1][j1]);
 				}
 				if (maxSum < sumMatr) {
 					maxSum = sumMatr;
 					indexi = i;
 					indexj = j;
 				}
-				printf("\n");
+				
 			}
-			printf("\n");
+			
 		}
 	}
+
 	printf("best matr\n");
-	for (int i = indexi; i < indexi + podmatrizaSize; i++) {
+	for (int i = indexi; i < indexi + podmatrizaSize; i++) { //вывод лучшей матрицы
 		for (int j = indexj; j < indexj + podmatrizaSize; j++)
 		{
 			printf("%i ", matr[i][j]);
@@ -168,5 +175,5 @@ int main() {
 	//First();
 	//Second();
 	//Third();
-	Four();
+	//Four();
 }
